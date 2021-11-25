@@ -49,5 +49,21 @@ else:
 print('\nTask 3')
 
 import random
-input_string = input('Введите строку ')
+word = input('Введите слово  ')
+five_words = 0
+
+while five_words < 5:  # повторяем для 5 слов
+    char_list = list(word)  # разбиваем слово на список символов
+    len_list = len(word) - 1
+    new_word = ''
+
+    while len_list >= 0:  # повторить раз на длину строки
+        char_rand = random.randint(0, len_list)  # генерация рандомного символа строки
+        new_word = new_word + char_list[char_rand]  # собираем слово по буквам
+        char_list.remove(str(char_list[char_rand]))  # удаляем использованный символ из списка
+        len_list -= 1
+
+    five_words += 1
+    print('Новое слово  = ', new_word)
+
 
