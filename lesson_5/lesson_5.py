@@ -1,10 +1,11 @@
-#Task 1
-#The Guessing Game.
-#Write a program that generates a random number between 1 and 10 and lets the user guess what number was generated.
+# Task 1
+# The Guessing Game.
+# Write a program that generates a random number between 1 and 10 and lets the user guess what number was generated.
 # The result should be sent back to the user via a print statement.
 print('\nTask 1')
 
 import random
+
 guesses = 3
 random_number = random.randint(1, 10)
 print('Введите число от 1 до 10\n У вас 3 попытки')
@@ -25,10 +26,10 @@ while guesses > 0:
     else:
         print('Неправильный ввод. Пожалуйста введите число от 1 до 10')
 
-#Task 2
-#The birthday greeting program.
-#Write a program that takes your name as input, and then your age as input and greets you with the following:
-#“Hello <name>, on your next birthday you’ll be <age+1> years”
+# Task 2
+# The birthday greeting program.
+# Write a program that takes your name as input, and then your age as input and greets you with the following:
+# “Hello <name>, on your next birthday you’ll be <age+1> years”
 print('\nTask 2')
 
 name = input('Type your name   ')
@@ -39,16 +40,17 @@ if age.isdigit():
 else:
     print('Invalid type')
 
-#Task 3
+# Task 3
 
-#Create a program that reads an input string and then creates and prints 5 random
+# Create a program that reads an input string and then creates and prints 5 random
 # strings from characters of the input string.
-#For example, the program obtained the word ‘hello’, so it should print 5 random strings(words)
+# For example, the program obtained the word ‘hello’, so it should print 5 random strings(words)
 # that combine characters ‘h’, ‘e’, ‘l’, ‘l’, ‘o’ -> ‘hlelo’, ‘olelh’, ‘loleh’ …
 
 print('\nTask 3')
 
 import random
+
 word = input('Введите слово  ')
 five_words = 0
 
@@ -66,8 +68,8 @@ while five_words < 5:  # повторяем для 5 слов
     five_words += 1
     print('Новое слово  = ', new_word)
 
-#Task 4
-#The math quiz program Write a program that asks the answer for a mathematical expression,
+# Task 4
+# The math quiz program Write a program that asks the answer for a mathematical expression,
 # checks whether the user is right or wrong, and then responds with a message accordingly.
 print('\nTask 4')
 
@@ -84,7 +86,7 @@ question_3 = """Вопрос №2
 while guesses > 0 and count_question < 3:
     if count_question == 1 and guesses > 0:
         guess = input(question_1)
-        if  guess == '3.32':
+        if guess == '3.32':
             print('Правильно!')
             count_question += 1
         else:
@@ -93,7 +95,7 @@ while guesses > 0 and count_question < 3:
 
     elif count_question == 2 and guesses > 0:
         guess = input(question_2)
-        if  guess == '328':
+        if guess == '328':
             print('Правильно!')
             print('Поздравляем, вы выиграли!!!')
             count_question += 1
@@ -102,3 +104,29 @@ while guesses > 0 and count_question < 3:
             guesses -= 1
     if guesses == 0:
         print('Вы проиграли, у вас закончились  попытки')
+
+# Task 5
+# Правила следующие. Есть три разных формулы "y=2x+3" "y=3x+15" "y=x+7" с помощю рандома
+# выберите значение для х в пределах от нуля до 30ти, и одну из формул. Выведите на экран выбранную формулу
+# и значение x, получите ответ и проверьте его правильность (для этого переведите свой ответ
+# в строку и сравните строки). Например х получил значение 5 и рандомная формула вторая.
+# Тогда на экран выводится
+# y=3x+15
+# x = 5
+# y = ?
+# если человек вводит 30 пишем ему "молодец" и заканчиваем игру. Если другое число - "ты можешь лучше" и
+# загадываем новое х и новую формулу выбираем.
+print('\nTask 5')
+
+import random
+x = random.randint(0, 30)
+rand_formula = random.randint(0, 2)
+formula_0 = 2 * x + 3
+formula_1 = 3 * x + 15
+formula_2 = x + 7
+if rand_formula == 0:
+    print('Формула y=2x+3 =', formula_0)
+elif rand_formula == 1:
+    print('Формула y=3x+15 =', formula_1)
+elif rand_formula == 2:
+    print('Формула y=x+7 =', formula_2)
