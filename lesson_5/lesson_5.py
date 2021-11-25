@@ -130,3 +130,4 @@ elif rand_formula == 1:
     print('Формула y=3x+15 =', formula_1)
 elif rand_formula == 2:
     print('Формула y=x+7 =', formula_2)
+
