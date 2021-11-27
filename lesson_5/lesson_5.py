@@ -126,10 +126,10 @@ while True:
     if rand_formula == 0:
         print(f' Формула y=2x+3, если x = {x} Чему равен y = ')
         formula = 2 * x + 3
-    if rand_formula == 1:
+    elif rand_formula == 1:
         print(f' Формула y=3x+15, если x = {x} Чему равен y = ')
         formula = 3 * x + 15
-    if rand_formula == 2:
+    elif rand_formula == 2:
         print(f' Формула y=x+7, если x = {x} Чему равен y = ')
         formula = x + 7
 
