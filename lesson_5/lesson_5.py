@@ -80,8 +80,6 @@ question_1 = """Вопрос №1
 Решите пример:  1.36 + 2.8 * 0.7 = """
 question_2 = """Вопрос №2
 Чему равен х?   5 * (25 + x) = 1740 + 25 = """
-question_3 = """Вопрос №2
-Чему равен х?   5 * (25 + x) = 1740 + 25 = """
 
 while guesses > 0 and count_question < 3:
     if count_question == 1 and guesses > 0:
@@ -119,9 +117,10 @@ while guesses > 0 and count_question < 3:
 print('\nTask 5')
 
 import random
+
 while True:
     x = random.randint(0, 30)
-    rand_formula = random.randint(0,2) # Рандом на формулу
+    rand_formula = random.randint(0, 2)  # Рандом на формулу
     formula = 0
 
     if rand_formula == 0:
