@@ -60,6 +60,5 @@ if __name__ == '__main__':
 # where `i` goes from 1 to 10 and `j` is corresponding to `i` squared.
 
 if __name__ == '__main__':
-    list_squred = []
-    my_list = [list_squred.append((item, item * item)) for item in range(1, 10)]
-    print(list_squred)
+    my_list = [(item, item * item) for item in range(1, 10)]
+    print(my_list)
