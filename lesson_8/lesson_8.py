@@ -26,5 +26,41 @@ if __name__ == '__main__':
     user_input = [input('Введите страну '), input('Введите введите столицу ')]
     make_country(user_input[0], user_input[1])
 
+# Task 3
+# A simple calculator.
+# Create a function called make_operation, which takes in a simple arithmetic operator as a first parameter
+# (to keep things simple let it only be ‘+’, ‘-’ or ‘*’) and an arbitrary number of arguments (only numbers) as
+# the second parameter. Then return the sum or product of all the numbers in the arbitrary parameter. For example:
 
-# Задачку №3 не успел доделать, завтра доделаю)
+#    the call make_operation(‘+’, 7, 7, 2) should return 16
+#    the call make_operation(‘-’, 5, 5, -10, -20) should return 30
+#    the call make_operation(‘*’, 7, 6) should return 42
+
+if __name__ == '__main__':
+    def make_operation(operator, *args):
+        nums_list = list(args)
+
+        if operator == '+':
+            return sum(nums_list)
+
+        elif operator == '-':
+            num = nums_list[0]
+            nums_list.remove(num)
+            print(nums_list)
+            for item in nums_list:
+                num = num - item
+            return num
+
+        elif operator == '*':
+            num = 1
+            for item in args:
+                num = num * item
+            return num
+
+        elif operator == '/':
+            num = args[0]**2
+            for item in args:
+                num = num / item
+            return num
+
+    print(make_operation('*', 8, 6))
