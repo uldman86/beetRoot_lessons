@@ -26,6 +26,5 @@ if __name__ == '__main__':
     user_input = [input('Введите страну '), input('Введите введите столицу ')]
     make_country(user_input[0], user_input[1])
 
-# Task 3
-if __name__ == '__main__':
-    pass
+
+# Задачку №3 не успел доделать, завтра доделаю)
