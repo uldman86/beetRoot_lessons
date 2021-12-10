@@ -46,7 +46,6 @@ if __name__ == '__main__':
         elif operator == '-':
             num = nums_list[0]
             nums_list.remove(num)
-            print(nums_list)
             for item in nums_list:
                 num = num - item
             return num
