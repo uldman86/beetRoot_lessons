@@ -130,5 +130,40 @@ if __name__ == '__main__':
     assert u1.phone == "+380331233333"
     assert u2.phone == ""
 
+# Task 5
+# Задача Напишите класс который будет "рисовать" букву псевдографикой.
+# Например чтобы диезами написать букву A нам нужно напечатать
+
+###
+#  #
+####
+#  #
+
+# Реализуйте класс SymbolA с методам line который параметром принимает номер выводимой строки и возвращает
+# соответствующее строковое значение.
+
+if __name__ == '__main__':
+    class SymbolA:
+        def __init__(self, s):
+            self.s = s
+
+        def line(self, index):
+            my_list = [f' {self.s * 3}', f'{self.s}  {self.s}', f'{self.s * 4}', f'{self.s}  {self.s}']
+            return my_list[index]
+
+
+    a = SymbolA('@')
+
+    assert a.line(0) == " @@@"
+    assert a.line(1) == "@  @"
+    assert a.line(2) == "@@@@"
+    assert a.line(3) == "@  @"
+
+    a2 = SymbolA('$')
+    assert a2.line(0) == " $$$"
+    assert a2.line(1) == "$  $"
+    assert a2.line(2) == "$$$$"
+    assert a2.line(3) == "$  $"
+
 
 
