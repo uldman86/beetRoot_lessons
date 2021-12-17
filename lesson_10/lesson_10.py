@@ -17,7 +17,7 @@ if __name__ == '__main__':
 # Task 2
 # Extend Phonebook application
 # Functionality of Phonebook application:
-#Add new entries
+# Add new entries
 #    Search by first name
 #    Search by last name
 #    Search by full name
@@ -41,7 +41,17 @@ if __name__ == '__main__':
 
 
     create_new_phonebook()
+    menu = ['Выход', 'Добавить новую запись', 'Удалить запись', 'Изменить запись', 'Поиск контакта']
 
+
+
+
+    def valid_user_input():
+        if input() == str(range(10)):
+            print(100500)
+        #user_input = input('Выберите меню')
+
+    valid_user_input()
 
     def exit_program():  # Выход из программы
         pass
