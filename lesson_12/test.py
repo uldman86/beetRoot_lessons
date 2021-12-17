@@ -27,3 +27,4 @@ class ProductStore(Product):
     def get_product_info(self):     # возвращает кортеж с названием продукта и количеством товаров в магазине.
         pass
 
+
