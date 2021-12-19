@@ -32,16 +32,17 @@ class ProductStore:
         product = self.get_product_info(product_name)
         if product:
             if 0 < product[1] >= amount:
-                return product
+                return product[2]
             else:
                 print(f'Наличие товаров в магазине ({product[1]}) ниже вашего запроса ({amount})')
         return False
 
     def sell_product(self, product_name, amount):  # удаляет определенное количество товаров из магазина, если доступно, в противном случае вызывает ошибку. Он также увеличивает доход, если метод sell_product завершается успешно.
-        #product = self.product_availability(product_name, amount)
-        pass
-            #self.data[] = self.data - amount
-            #product_tuple = tuple((value[0].name, value[1]) for key, value in self.data.items() if value[0].name == product)
+        product_id = self.product_availability(product_name, amount)
+        self.data.get(product_id)[1] -= amount
+        self.cash_register += self.data.get(product_id)[2]
+        print(self.data.get(product_id))
+        print(self.cash_register)
 
 
     def get_income(self):  # возвращает сумму многих заработанных экземпляром ProductStore.
@@ -71,4 +72,4 @@ foxtrot = ProductStore('Foxtrot')
 foxtrot.add(samsung_qe55, 13)
 foxtrot.add(nokia_3310, 5)
 
-print(foxtrot.sell_product('Samsung QE55Q60AAUXUA', 12))
+foxtrot.sell_product('Samsung QE55Q60AAUXUA', 12)
