@@ -183,3 +183,27 @@ if __name__ == '__main__':
     s.sell_product('Ramen', 10)
     assert s.get_product_info('Ramen') == ('Ramen', 290, 100001)  # Добавил в проверку product_id,
     # так как на нем завязана логика продажи товара
+
+
+# Task 4
+# Custom exception
+# Create your custom exception named `CustomException`, you can inherit from base Exception class,
+# but extend its functionality to log every error message to a file named` logs.txt`. Tips: Use __init__ method
+# to extend functionality for saving messages to file
+
+if __name__ == '__main__':
+    class CustomException(Exception):
+        def __init__(self, msg):
+            with open('msg_error.txt', 'a', encoding='utf-8') as msg_error:
+                msg_error.write(msg)
+
+
+    def calculations_percent(persent, coast):
+        if persent <= 0:
+            raise CustomException('CustomException: Передваваемы процент или стоимость не могут быть '
+                                  'меньше или равняться нулю\n')
+        return persent * coast
+
+
+    print(calculations_percent(2, 5))
+    print(calculations_percent(0, 5))
