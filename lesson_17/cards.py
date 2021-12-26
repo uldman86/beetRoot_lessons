@@ -62,4 +62,3 @@ players = [player_1, player_3, player_2]
 
 for index, card in enumerate(main_deck):
     players.deck_in_hand.add_card(card)
-
