@@ -9,9 +9,8 @@
 # add an explicit ‘\n’ at the end of the string if you want to fully terminate the line in the file.
 
 if __name__ == '__main__':
-    file = open('myfile.txt', 'w')
-    file.write('Hello file world!\n')
-    file.close()
+    with open('myfile.txt', 'w') as file:
+        file.write('Hello file world!\n')
 
 
 # Task 2
@@ -31,61 +30,93 @@ if __name__ == '__main__':
 # Application should load JSON data, if it is present in the folder with application, else raise an error.
 # After the user exits, all data should be saved to loaded JSON.
 
-import json
-
 if __name__ == '__main__':
-    def create_new_phonebook():  # Создать телефонную книгу
-        phonebook = {'name': '', 'age': ''}
-        with open('phonebook.json', 'w', encoding='utf8') as write_file:
-            json.dump(phonebook, write_file)
+    import json
 
+    if __name__ == '__main__':
+        class Phonebook:
+            def __init__(self):
+                self.user_id = 0
+                self.phonebook_data = []
+                with open('phonebook.json', 'w', encoding='utf8') as self.phonebook_file:
+                    json.dump(self.phonebook_data, self.phonebook_file, indent=4)
 
-    create_new_phonebook()
-    menu = ['Выход', 'Добавить новую запись', 'Удалить запись', 'Изменить запись', 'Поиск контакта']
+            def add_new_entries(self, first_name, last_name, telephone, address):  # Добавить новую запись
+                self.phonebook_data.append(
+                    {'first_name': first_name, 'last_name': last_name, 'telephone': telephone, 'address': address})
+                with open('phonebook.json', 'w', encoding='utf8') as self.phonebook_file:
+                    json.dump(self.phonebook_data, self.phonebook_file, indent=4)
 
+            def delete_telephone_number(self, telephone):  # Удалить номер телефона
+                person = self.search_by_telephone_number(telephone)
+                print(person)
+                for key in person:
+                    self.phonebook_data.pop(key)
+                with open('phonebook.json', 'w', encoding='utf8') as self.phonebook_file:
+                    json.dump(self.phonebook_data, self.phonebook_file, indent=4)
 
+            def update_telephone_number(self, person: dict, first_name='', last_name='', telephone='',
+                                        address=''):  # Изменить запись
+                for value in person:
+                    if value == 'first_name' and first_name != '':
+                        person[value] = first_name
+                    elif value == 'last_name' and last_name != '':
+                        person[value] = last_name
+                    elif value == 'telephone' and telephone != '':
+                        person[value] = telephone
+                    elif value == 'address' and address != '':
+                        person[value] = address
+                with open('phonebook.json', 'w', encoding='utf8') as self.phonebook_file:
+                    json.dump(self.phonebook_data, self.phonebook_file, indent=4)
+                return person
 
+            def search_by_first_name(self, search_name):  # Поиск по имени
+                return self.search_essence(search_name, 'first_name')
 
-    def valid_user_input():
-        if input() == str(range(10)):
-            print(100500)
-        #user_input = input('Выберите меню')
+            def search_by_last_name(self, search_last_name):  # Поиск по фамилии
+                return self.search_essence(search_last_name, 'last_name')
 
-    valid_user_input()
+            def search_by_full_name(self, search_name, search_last_name):  # Поиск по ФИО
+                peoples_find = {}  # Словарь который будет возвращен с найдеными совпадениями
+                i = -1  # Используется для формирования ключа в словаре
+                people_dict = self.search_essence(search_name, 'first_name')
+                for person in people_dict:
+                    person_iter = people_dict.get(person)
+                    [peoples_find.update({i + 1: person_iter}) for key in person_iter if
+                     person_iter.get(key) == search_last_name]
+                people_dict = self.search_essence(search_name, 'last_name')
+                for person in people_dict:
+                    person_iter = people_dict.get(person)
+                    [peoples_find.update({i + 1: person_iter}) for key in person_iter if
+                     person_iter.get(key) == search_name]
+                return peoples_find
 
-    def exit_program():  # Выход из программы
-        pass
+            def search_by_telephone_number(self, search_telephone):  # Поиск по номеру
+                return self.search_essence(search_telephone, 'telephone')
 
+            def search_essence(self, search_info='', search_key=''):
+                data_dict = {}
+                for person in self.phonebook_data:
+                    for key in person:
+                        if search_info == person.get(key) and search_key == key:
+                            data_dict.update({self.phonebook_data.index(person): person})
+                return data_dict
 
-    def add_new_entries():  # Добавить новую запись
-        pass
+            def search_by_location(self, search_address):  # Поиск по стране или городу
+                return self.search_essence(search_address, 'address')
 
+        phonebook = Phonebook()
+        phonebook.add_new_entries('Sergey', 'Uldman', '+380111222333', 'Mariupol')
+        phonebook.add_new_entries('Sergey', 'Uldman', '+380111222333', 'Mariupol')
+        phonebook.add_new_entries('Alex', 'Ivanov', '+380222333444', 'Minsk')
+        phonebook.add_new_entries('Sergey', 'Gromov', '', 'Odessa')
 
-    def delete_telephone_number():  # Удалить номер телефона
-        pass
-
-
-    def update_telephone_number():  # Изменить запись
-        pass
-
-
-    def search_by_first_name():  # Поиск по имени
-        pass
-
-
-    def search_by_last_name():  # Поиск по фамилии
-        pass
-
-
-    def search_by_full_name():  # Поиск по ФИО
-        pass
-
-
-    def search_by_telephone_number():  # Поиск по номеру
-        pass
-
-
-    def search_by_location():  # Поиск по стране или городу
-        pass
-
-#    data = {'name': 'Sergey', 'age': 17}
+        # print(phonebook.phonebook_data)
+        # phonebook.delete_telephone_number('+380222333444')
+        # print(phonebook.phonebook_data)
+        # print(phonebook.search_by_first_name('Sergey'))
+        # print(phonebook.search_by_last_name('Ivanov'))
+        # print(phonebook.search_by_telephone_number('+380222333444'))
+        # print(phonebook.search_by_location('Odessa'))
+        # print(phonebook.search_by_full_name('Sergey', 'Uldman'))
+        # print(phonebook.update_telephone_number(phonebook.phonebook_data[0], 'Bobby', 'Egorov'))
