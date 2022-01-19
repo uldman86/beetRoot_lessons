@@ -99,4 +99,82 @@ if __name__ == '__main__':
     boss1.worker_list = worker1
     boss1.worker_list = worker1
 
+# Task 3
+# Write a class TypeDecorators which has several methods for converting results of functions
+# to a specified type (if it's possible):
+from functools import wraps
+if __name__ == '__main__':
+    class TypeDecorators:
+        @staticmethod
+        def to_int(func):
+            @wraps(func)
+            def inner(*args, **kwargs):
+                result = func(*args, **kwargs)
+                if isinstance(result, float | int):
+                    return int(result)
+                elif isinstance(result, str):
+                    if result.isdigit():
+                        return int(result)
+                    else:
+                        raise ValueError
+                else:
+                    raise TypeError
+            return inner
+
+        @staticmethod
+        def to_str(func):
+            @wraps(func)
+            def inner(*args, **kwargs):
+                result = func(*args, **kwargs)
+                return str(result)
+            return inner
+
+        @staticmethod
+        def to_float(func):
+            @wraps(func)
+            def inner(*args, **kwargs):
+                result = func(*args, **kwargs)
+                if isinstance(result, int):  # Интересно что тип Boolean проходит проверку на тип int!
+                    return float(result)
+                elif isinstance(result, str):
+                    if result.isdigit():
+                        return float(result)
+                    else:
+                        raise TypeError
+                else:
+                    raise TypeError
+            return inner
+
+        @staticmethod
+        def to_bool(func):  # Не совсем понял как вернуть False если в метод bool() ничего не передвать
+            @wraps(func)
+            def inner(*args, **kwargs):
+                result = func(*args, **kwargs)
+                if isinstance(result, str):
+                    if len(result) == 0:
+                        return False
+                    else:
+                        return True
+                elif isinstance(result, int | float):
+                    if result == 0:
+                        return False
+                    else:
+                        return True
+                else:
+                    raise TypeError
+            return inner
+
+    @TypeDecorators.to_int
+    def do_nothing(string: str):
+        return string
+
+
+    @TypeDecorators.to_bool
+    def do_something(string: str):
+        return string
+
+
+    assert do_nothing('25') == 25
+
+    assert do_something('True') is True
 
