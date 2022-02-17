@@ -70,10 +70,6 @@ if __name__ == '__main__':
     assert q.push('}}})((((') == False
     assert q.push('(asd{1}  awd ({}))') == True
 
-
-
-
-
     # Task 3
     # Extend the Stack to include a method called get_from_stack that searches and returns an element e from a stack.
     # Any other element must remain on the stack respecting their order.
