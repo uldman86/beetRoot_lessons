@@ -14,9 +14,3 @@ class Node:
 
     def set_next(self, new_next):
         self._next = new_next
-
-    def __repr__(self):
-        return f'object - {self._data}'
-
-    def __str__(self):
-        return f'object - {self._data}'

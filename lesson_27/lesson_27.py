@@ -156,5 +156,71 @@ if __name__ == '__main__':
     # q.pop()
     # print(q.size())
 
+    # Task 3
+
+    # Implement a queue using a singly linked list.
+
+    from typing import Optional, Any
+    from node import Node
+
+
+    class Enqueue:
+        def __init__(self):
+            self._root = None
+
+        def is_empty(self) -> bool:
+            if self._root:
+                return False
+            else:
+                return True
+
+        def dequeue(self):
+            if self.is_empty():
+                raise IndexError('Package is empty')
+            present_elem = self._root
+            while True:
+                if present_elem.get_next().get_next():
+                    present_elem = present_elem.get_next()
+                elif not present_elem.get_next().get_next():
+                    present_elem.set_next(None)
+                    break
+
+        def enqueue(self, data: Any):
+            item: Node = Node(data)
+            if not self._root:
+                self._root = item
+            else:
+                item.set_next(self._root)
+                self._root = item
+
+        def peek(self) -> Any:
+            if self.is_empty():
+                raise IndexError('Package is empty')
+            present_elem = self._root
+            while True:
+                if present_elem.get_next().get_next():
+                    present_elem = present_elem.get_next()
+                elif not present_elem.get_next().get_next():
+                    return present_elem.get_next()
+
+
+    def size(self):
+        present_elem = self._root
+        size = 0
+        while True:
+            if present_elem:
+                size += 1
+                present_elem = present_elem.get_next()
+            else:
+                return size
+
+
+    q = Enqueue()
+    q.enqueue('one')
+    q.enqueue('two')
+    q.enqueue('three')
+    q.enqueue('four')
+    q.dequeue()
+    q.peek()
 
 
